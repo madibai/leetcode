@@ -8,8 +8,8 @@ def easy_TwoSum1(nums, target):
     for i in range(len(nums)):
         if i > 0 and nums[i] == nums[i - 1]:   continue
         s2 = i + 1
-        while len(arr)==0:
-            sums = nums[i]+nums[s2]
+        while len(arr) == 0:
+            sums = nums[i] + nums[s2]
             if sums == target:
                 arr.append([nums[i], nums[s2]])
                 a1 = i
@@ -66,10 +66,10 @@ def simplfpath2(s) -> str:
         if i == '/':
             if len(answer) == 0:
                 answer += i
-                #stack_slash.append(i)
+                # stack_slash.append(i)
             elif answer[-1] == '/':
                 answer
-                #stack_slash.pop()
+                # stack_slash.pop()
             elif answer[-1] == '.':
                 answer = answer[:-1]
             else:
@@ -77,17 +77,16 @@ def simplfpath2(s) -> str:
         elif i == '.':
             if answer[-1] == '.':
                 answer = answer[:-3]
-                #stack_dots.pop()
+                # stack_dots.pop()
             else:
                 answer += i
-                #stack_dots.append(i)
+                # stack_dots.append(i)
         else:
             answer += i
     return answer[:-1] if (answer[-1] == '/' or answer[-1] == '.') and len(answer) > 1 else answer
 
 
 def check_circular_queue(k):
-
     class circular_queue:
 
         def __init__(self, k: int):
@@ -159,6 +158,64 @@ def check_circular_queue(k):
     print(circularQueue.Rear())
 
 
+def letter_combinations_of_a_phone_number(digits):
+    map_dict = {'2': "abc", '3': "def", '4': "ghi", '5': "jkl", '6': "mno", '7': "pqrs", '8': "tuv", '9': "wxyz"}
+    cmb = [''] if digits else []
+    for d in digits:
+        cmb = [p + q for p in cmb for q in map_dict[d]]
+    return cmb
+
+
+def delete_duplicates_in_sorted_array(arr):
+    a = list(dict.fromkeys(arr))
+    print(*a)
+    print(len(list(dict.fromkeys(arr))))
+    if len(arr) == 0:
+        return 0
+    j = 1
+    i = 0
+    while j < len(arr):
+        if arr[j] != arr[i]:
+            i += 1
+            arr[i] = arr[j]
+        j += 1
+    answer = i + 1
+    return len(a), answer
+
+
+def python_lambda():
+    def to_upper_case(s):
+        return str(s).upper()
+    aa = map(to_upper_case, 'abc')
+    print(*aa)
+
+    map_iterator = map(to_upper_case, ['a', 'b', 'c'])
+    my_list = list(map_iterator)
+    map_iterator = map(to_upper_case, ['a', 'b', 'c'])
+    my_set = set(map_iterator)
+    map_iterator = map(to_upper_case, ['a', 'b', 'c'])
+    my_tuple = tuple(map_iterator)
+    print(my_list, my_set, my_tuple)
+
+    list_numbers = [1, 2, 3, 4]
+
+    map_iterator1 = map(lambda x: x * 2, list_numbers)
+    map_iterator2 = lambda x: x * 2, list_numbers
+    print(*map_iterator1)
+    print(*map_iterator2)
+
+    list_numbers = [1, 2, 3, 4]
+    tuple_numbers = (5, 6, 7, 8)
+    map_iterator = map(lambda x, y: x - y, list_numbers, tuple_numbers)
+    print(*map_iterator)
+
+    l = ['sata', 'badt', 'cats', 'amat']
+    test = list(map(list, l))
+    print(test)
+
+    return 0
+
+
 if __name__ == '__main__':
     #  easy_TwoSum1()
     #  easy_TwoSum2()
@@ -166,5 +223,7 @@ if __name__ == '__main__':
     #  print(simplify_path('/../'))
     #  print(simplify_path('/a//b////c/d//././/..'))
     #  print(simplify_path('/a/../../b/../c//.//'))
-    check_circular_queue(5)
-
+    #  check_circular_queue(5)
+    #  print(letter_combinations_of_a_phone_number('23'))
+    #  print(delete_duplicates_in_sorted_array([0,0,1,1,1,2,2,3,3,4]))
+    python_lambda()
