@@ -216,14 +216,71 @@ def python_lambda():
     return 0
 
 
+def easy_kids_test():
+    #   1431. Kids With the Greatest Number of Candies
+    print(easy_kids([2,3,5,1,3], 3))
+
+
+def easy_kids(candies, extraCandies):
+    tmp = max(candies)
+    res = [candy + extraCandies >= tmp for candy in candies]
+    return res
+
+
+def query_permu_test():
+    #   1409. Queries on a Permutation With Key
+    print(query_permu([3,1,2,1], 5))
+    print(query_permu([4,1,2,2], 4))
+    print(query_permu([7,5,5,8,3], 8))
+
+
+def query_permu(queries, m):
+    tmp = list(range(1, m+1))
+    res = []
+    for i in queries:
+        res.append(tmp.index(i))
+        tmp.insert(0, tmp.pop(tmp.index(i)))
+    return res
+
+
+def count_number_test():
+    #   1395. Count Number of Teams
+    print(count_number([2,5,3,4,1]))
+    print(count_number([2,1,3]))
+    print(count_number([1,2,3,4]))
+
+
+def count_number(rating):
+    asc = dsc = 0
+    for i, v in enumerate(rating):
+        llc = rgc = lgc = rlc = 0
+        for l in rating[:i]:
+            if l < v:
+                llc += 1
+            if l > v:
+                lgc += 1
+        for r in rating[i + 1:]:
+            if r > v:
+                rgc += 1
+            if r < v:
+                rlc += 1
+        asc += llc * rgc
+        dsc += lgc * rlc
+    return asc + dsc
+
+
 if __name__ == '__main__':
-    #  easy_TwoSum1()
-    #  easy_TwoSum2()
-    #  print(valid_parentheses20(''))
-    #  print(simplify_path('/../'))
-    #  print(simplify_path('/a//b////c/d//././/..'))
-    #  print(simplify_path('/a/../../b/../c//.//'))
-    #  check_circular_queue(5)
-    #  print(letter_combinations_of_a_phone_number('23'))
-    #  print(delete_duplicates_in_sorted_array([0,0,1,1,1,2,2,3,3,4]))
-    python_lambda()
+    #   easy_TwoSum1()
+    #   easy_TwoSum2()
+    #   print(valid_parentheses20(''))
+    #   print(simplify_path('/../'))
+    #   print(simplify_path('/a//b////c/d//././/..'))
+    #   print(simplify_path('/a/../../b/../c//.//'))
+    #   check_circular_queue(5)
+    #   print(letter_combinations_of_a_phone_number('23'))
+    #   print(delete_duplicates_in_sorted_array([0,0,1,1,1,2,2,3,3,4]))
+    #   python_lambda()
+    #   easy_kids_test()
+    #   query_permu_test()
+    count_number_test()
+
