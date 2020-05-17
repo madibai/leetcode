@@ -248,6 +248,7 @@ def count_number_test():
     print(count_number([2,5,3,4,1]))
     print(count_number([2,1,3]))
     print(count_number([1,2,3,4]))
+    print(count_number([1, 0, 3, 4]))
 
 
 def count_number(rating):
